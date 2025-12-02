@@ -1,0 +1,31 @@
+<div class="fondo-solido"></div>
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-header-left">
+      <button class="user-icon" (click)="openUserModal()"><i class="fa fa-user"></i></button>
+    </div>
+    <div class="sidebar-header-right">
+  <span *ngIf="usuarioNombre; else loading" class="sidebar-nombre">{{ usuarioNombre }}</span>
+  <span *ngIf="userRol" class="sidebar-rol">{{ userRol }}</span>
+      <ng-template #loading><span>Usuario</span></ng-template>
+    </div>
+  </div>
+    <hr class="separator" />
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="/home">Inicio</a></li>
+        <li *ngIf="userRol === 'Supervisor' || userRol === 'Administrador'"><a href="/supervision">Supervisión</a></li>
+        <li><a href="/listado">Mis Planillas</a></li>
+        <li *ngIf="userRol === 'Supervisor' || userRol === 'Administrador'"><a href="/historial">Historial de Planillas</a></li>
+        <li *ngIf="userRol === 'Administrador'"><a href="/usuarios">Gestión de Usuarios</a></li>
+        <li *ngIf="userRol === 'Administrador'"><a href="/administracion">Administración</a></li>
+      </ul>
+    </nav>
+    <hr class="separator" />
+    <div class="sidebar-footer">
+        <hr class="separator" />
+        <a href="#" (click)="logout()">
+            <i class="fa fa-sign-out"></i> Cerrar sesión
+        </a>
+    </div>
+</aside>

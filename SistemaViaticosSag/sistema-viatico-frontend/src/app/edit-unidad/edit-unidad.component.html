@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="unidadForm" (ngSubmit)="guardarUnidad()" class="user-form">
+
+    <!-- Campo Código -->
+    <div class="form-field">
+      <label for="codigo" class="form-label">Código</label>
+      <input id="codigo" type="text" pInputText formControlName="codigo_unidad" class="w-full" required />
+      <small class="p-error" *ngIf="unidadForm.get('codigo_unidad')?.touched && unidadForm.get('codigo_unidad')?.invalid">
+        {{ getFieldError('codigo_unidad') }}
+      </small>
+    </div>
+
+    <!-- Campo Nombre -->
+    <div class="form-field">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input id="nombre" type="text" pInputText formControlName="nombre_unidad" class="w-full" required />
+      <small class="p-error" *ngIf="unidadForm.get('nombre_unidad')?.touched && unidadForm.get('nombre_unidad')?.invalid">
+        {{ getFieldError('nombre_unidad') }}
+      </small>
+    </div>
+
+    <!-- Campo Estado -->
+    <div class="form-field">
+      <label for="activo" class="form-label">Estado</label>
+      <p-select
+        id="activo"
+        [options]="estadoOptions"
+        formControlName="activo"
+        placeholder="Seleccione estado"
+        styleClass="w-full"
+      ></p-select>
+      <small class="p-error" *ngIf="unidadForm.get('activo')?.touched && unidadForm.get('activo')?.invalid">
+        {{ getFieldError('activo') }}
+      </small>
+    </div>
+
+    <!-- Campo Jefe Unidad -->
+    <div class="form-field">
+      <label for="jefe" class="form-label">Jefe Unidad</label>
+      <p-select
+        id="jefe"
+        [options]="usuariosJefes"
+        formControlName="id_jefe"
+        placeholder="Seleccione jefe de unidad"
+        styleClass="w-full"
+      ></p-select>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar unidad" type="submit" [disabled]="unidadForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

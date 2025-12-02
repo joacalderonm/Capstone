@@ -1,0 +1,44 @@
+<p-card styleClass="input-card">
+  <ng-template pTemplate="content">
+    <p-table [value]="anticipos" [loading]="loading" responsiveLayout="scroll">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Programa</th>
+          <th>Unidad</th>
+          <th>Producto específico</th>
+          <th>Cuenta presupuestaria</th>
+          <th>Región</th>
+          <th>Cantidad de días 100%</th>
+          <th>Cantidad de días 40%</th>
+          <th>Total anticipo</th>
+          <th *ngIf="!isCerrada">Opciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-anticipo>
+        <tr>
+          <td>{{ anticipo.codigo_programa }}</td>
+          <td>{{ anticipo.codigo_unidad }}</td>
+          <td>{{ anticipo.codigo_subesp }}</td>
+          <td>{{ anticipo.codigo_presupuestaria }}</td>
+          <td>{{ anticipo.nombre_region }}</td>
+          <td>{{ anticipo.dias_100 }}</td>
+          <td>{{ anticipo.dias_40 }}</td>
+          <td>{{ formatCurrency(anticipo.total_viatico) }}</td>
+          <td *ngIf="!isCerrada">
+            <p-button icon="fas fa-pencil" text (click)="editarAnticipo(anticipo)"></p-button>
+            <p-button icon="fas fa-trash" text (click)="eliminarAnticipo(anticipo)"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="isCerrada ? 8 : 9" class="text-center">No hay anticipos registrados para esta plantilla</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </ng-template>
+</p-card>

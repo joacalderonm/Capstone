@@ -1,0 +1,87 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="userForm" (ngSubmit)="guardarUsuario()" class="user-form">
+    <div class="row">
+
+      <!-- Campo Nombre -->
+      <div class="col-md-6">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input id="nombre" type="text" pInputText formControlName="nombre" class="w-full" required />
+        <small class="p-error" *ngIf="userForm.get('nombre')?.touched && userForm.get('nombre')?.invalid">
+          {{ getFieldError('nombre') }}
+        </small>
+      </div>
+
+      <!-- Campo Apellido Paterno -->
+      <div class="col-md-6">
+        <label for="apellidoPaterno" class="form-label">Apellido Paterno</label>
+        <input id="apellidoPaterno" type="text" pInputText formControlName="apellidoPaterno" class="w-full" required />
+        <small class="p-error" *ngIf="userForm.get('apellidoPaterno')?.touched && userForm.get('apellidoPaterno')?.invalid">
+          {{ getFieldError('apellidoPaterno') }}
+        </small>
+      </div>
+
+      <!-- Campo Apellido Materno -->
+      <div class="col-md-6">
+        <label for="apellidoMaterno" class="form-label">Apellido Materno</label>
+        <input id="apellidoMaterno" type="text" pInputText formControlName="apellidoMaterno" class="w-full" required />
+        <small class="p-error" *ngIf="userForm.get('apellidoMaterno')?.touched && userForm.get('apellidoMaterno')?.invalid">
+          {{ getFieldError('apellidoMaterno') }}
+        </small>
+      </div>
+
+      <!-- Campo Rol -->
+      <div class="col-md-6">
+        <label for="rol" class="form-label">Rol</label>
+        <p-select id="rol" [options]="roles" formControlName="rol" placeholder="Seleccione un rol" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="userForm.get('rol')?.touched && userForm.get('rol')?.invalid">
+          {{ getFieldError('rol') }}
+        </small>
+      </div>
+
+      <!-- Campo Unidad -->
+      <div class="col-md-6">
+        <label for="unidad" class="form-label">Unidad</label>
+        <p-select id="unidad" [options]="unidades" formControlName="unidad" placeholder="Seleccione una unidad" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="userForm.get('unidad')?.touched && userForm.get('unidad')?.invalid">
+          {{ getFieldError('unidad') }}
+        </small>
+      </div>
+
+      <!-- Campo Región -->
+      <div class="col-md-6">
+        <label for="region" class="form-label">Región</label>
+        <p-select id="region" [options]="regiones" formControlName="region" placeholder="Seleccione una región" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="userForm.get('region')?.touched && userForm.get('region')?.invalid">
+          {{ getFieldError('region') }}
+        </small>
+      </div>
+
+      <!-- Campo Calidad Jurídica -->
+      <div class="col-md-6">
+        <label for="calidadJuridica" class="form-label">Calidad Jurídica</label>
+        <p-select id="calidadJuridica" [options]="calidadesJuridicas" formControlName="calidadJuridica" placeholder="Seleccione..." styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="userForm.get('calidadJuridica')?.touched && userForm.get('calidadJuridica')?.invalid">
+          {{ getFieldError('calidadJuridica') }}
+        </small>
+      </div>
+
+      <!-- Campo Grado E.U. -->
+      <div class="col-md-6">
+        <label for="gradoEu" class="form-label">Grado E.U.</label>
+        <p-select id="gradoEu" [options]="gradosEU" formControlName="gradoEu" placeholder="Seleccione..." styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="userForm.get('gradoEu')?.touched && userForm.get('gradoEu')?.invalid">
+          {{ getFieldError('gradoEu') }}
+        </small>
+      </div>
+
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar usuario" type="submit" [disabled]="userForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,31 @@
+<div class="login-container">
+    <div class="login-box">        
+        <a href="https://www.sag.gob.cl/"><img src="/assets/Logo.png" alt="Logo" /></a>
+        <h2>Inicio sesión</h2>
+        <form #form="ngForm" (ngSubmit)="onLogin(form)">
+            <div class="input-group">
+                <input type="email" id="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email" required />
+            </div>
+            <div class="input-group">
+                <input 
+                    [type]="passwordVisible ? 'text' : 'password'" 
+                    id="password" 
+                    placeholder="Contraseña" 
+                    [(ngModel)]="password" 
+                    name="password" 
+                    required 
+                />
+                <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+                    <i [class]="passwordVisible ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                </button>
+            </div>
+            
+
+            <button type="submit" class="login-btn" [disabled]="form.invalid">Iniciar sesión</button>
+
+            <a href="#" class="forgot-password" (click)="openForgotPasswordDialog(); $event.preventDefault()">
+                ¿Olvidaste tu contraseña?
+            </a>
+        </form>
+    </div>
+</div>

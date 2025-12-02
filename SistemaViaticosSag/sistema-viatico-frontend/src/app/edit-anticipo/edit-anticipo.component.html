@@ -1,0 +1,129 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="anticipoForm" (ngSubmit)="guardarAnticipo()" class="viatico-form">
+    <div class="row">
+
+      <!-- Campo Unidad -->
+      <div class="col-md-6">
+        <label for="unidad" class="form-label">Unidad</label>
+        <p-select id="unidad" [options]="unidades" formControlName="unidad" placeholder="Seleccione una unidad" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('unidad')?.touched && anticipoForm.get('unidad')?.invalid">
+          {{ getFieldError('unidad') }}
+        </small>
+      </div>
+
+      <!-- Campo Programa -->
+      <div class="col-md-6">
+        <label for="programa" class="form-label">Programa</label>
+        <p-select id="programa" [options]="programas" formControlName="programa" placeholder="Seleccione un programa" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('programa')?.touched && anticipoForm.get('programa')?.invalid">
+          {{ getFieldError('programa') }}
+        </small>
+      </div>
+
+      <!-- Campo Cuenta Presupuestaria -->
+      <div class="col-md-6">
+        <label for="cuentaPresupuestaria" class="form-label">Cuenta Presupuestaria</label>
+        <p-select id="cuentaPresupuestaria" [options]="cuentasPresupuestarias" formControlName="cuentaPresupuestaria" placeholder="Seleccione..." styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('cuentaPresupuestaria')?.touched && anticipoForm.get('cuentaPresupuestaria')?.invalid">
+          {{ getFieldError('cuentaPresupuestaria') }}
+        </small>
+      </div>
+
+      <!-- Campo Motivo Cometido -->
+      <div class="col-md-6">
+        <label for="motivoCometido" class="form-label">Motivo Cometido</label>
+        <p-select id="motivoCometido" [options]="motivosCometido" formControlName="motivoCometido" placeholder="Seleccione..." styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('motivoCometido')?.touched && anticipoForm.get('motivoCometido')?.invalid">
+          {{ getFieldError('motivoCometido') }}
+        </small>
+      </div>
+
+      <!-- Campo Región -->
+      <div class="col-md-6">
+        <label for="region" class="form-label">Región</label>
+        <p-select id="region" [options]="regiones" formControlName="region" placeholder="Seleccione una región" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('region')?.touched && anticipoForm.get('region')?.invalid">
+          {{ getFieldError('region') }}
+        </small>
+      </div>
+
+      <!-- Campo Producto Subesp -->
+      <div class="col-md-6">
+        <label for="productoSubesp" class="form-label">Producto Subesp</label>
+        <p-select id="productoSubesp" [options]="productosSubesp" formControlName="productoSubesp" placeholder="Seleccione..." styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="anticipoForm.get('productoSubesp')?.touched && anticipoForm.get('productoSubesp')?.invalid">
+          {{ getFieldError('productoSubesp') }}
+        </small>
+      </div>
+
+      <!-- Campo Localidad Destino -->
+      <div class="col-md-6">
+        <label for="localidadDestino" class="form-label">Localidad Destino</label>
+        <input id="localidadDestino" type="text" pInputText formControlName="localidadDestino" class="w-full" required />
+        <small class="p-error" *ngIf="anticipoForm.get('localidadDestino')?.touched && anticipoForm.get('localidadDestino')?.invalid">
+          {{ getFieldError('localidadDestino') }}
+        </small>
+      </div>
+
+      <!-- Campo Fecha Desde -->
+      <div class="col-md-6">
+        <label for="fechaDesde" class="form-label">Fecha Desde</label>
+        <input id="fechaDesde" type="date" pInputText formControlName="fechaDesde" class="w-full" required />
+        <small class="p-error" *ngIf="anticipoForm.get('fechaDesde')?.touched && anticipoForm.get('fechaDesde')?.invalid">
+          {{ getFieldError('fechaDesde') }}
+        </small>
+      </div>
+
+      <!-- Campo Fecha Hasta -->
+      <div class="col-md-6">
+        <label for="fechaHasta" class="form-label">Fecha Hasta</label>
+        <input id="fechaHasta" type="date" pInputText formControlName="fechaHasta" class="w-full" required />
+        <small class="p-error" *ngIf="anticipoForm.get('fechaHasta')?.touched && anticipoForm.get('fechaHasta')?.invalid">
+          {{ getFieldError('fechaHasta') }}
+        </small>
+      </div>
+
+      <!-- Campo Días 100% -->
+      <div class="col-md-6">
+        <label for="dias100" class="form-label">Días 100%</label>
+        <input id="dias100" type="number" pInputText formControlName="dias100" placeholder="0" class="w-full" min="0" required />
+        <small class="p-error" *ngIf="anticipoForm.get('dias100')?.touched && anticipoForm.get('dias100')?.invalid">
+          {{ getFieldError('dias100') }}
+        </small>
+      </div>
+
+      <!-- Campo Días 40% -->
+      <div class="col-md-6">
+        <label for="dias40" class="form-label">Días 40%</label>
+        <input id="dias40" type="number" pInputText formControlName="dias40" placeholder="0" class="w-full" min="0" required />
+        <small class="p-error" *ngIf="anticipoForm.get('dias40')?.touched && anticipoForm.get('dias40')?.invalid">
+          {{ getFieldError('dias40') }}
+        </small>
+      </div>
+
+      <!-- Campo Descripción Cometido -->
+      <div class="col-md-12">
+        <label for="descripcionCometido" class="form-label">Descripción Cometido</label>
+        <input id="descripcionCometido" type="text" pInputText formControlName="descripcionCometido" class="w-full" required />
+        <small class="p-error" *ngIf="anticipoForm.get('descripcionCometido')?.touched && anticipoForm.get('descripcionCometido')?.invalid">
+          {{ getFieldError('descripcionCometido') }}
+        </small>
+      </div>
+
+      <!-- Campo Observaciones -->
+      <div class="col-md-12">
+        <label for="observaciones" class="form-label">Observaciones</label>
+        <input id="observaciones" type="text" pInputText formControlName="observaciones" class="w-full" />
+      </div>
+
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar anticipo" type="submit" [disabled]="anticipoForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,51 @@
+/* Hacer la tabla transparente y sin sombra */
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr {
+  background-color: transparent !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
+  background-color: transparent !important;
+  border-bottom: none;
+  font-weight: 500 !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
+  border-bottom: none;
+  border-top: 1px solid #dee2e6;
+  padding: 0.75rem;
+}
+
+:host ::ng-deep .p-card {
+  box-shadow: none !important;
+}
+
+/* Remover paginación y controles */
+:host ::ng-deep .p-paginator {
+  display: none !important;
+}
+
+:host ::ng-deep .p-datatable .p-datatable-footer {
+  display: none !important;
+}
+
+/* Remover padding bottom del p-card-body */
+:host ::ng-deep .p-card-body {
+  padding-bottom: 0 !important;
+}
+
+/* Centrar el mensaje de tabla vacía */
+:host ::ng-deep .p-datatable .p-datatable-emptymessage {
+  text-align: center !important;
+  font-style: italic;
+  color: #6c757d;
+}
+
+/* Estilos para botones de opciones */
+:host ::ng-deep .p-button-text {
+  color: #6c757d !important;
+}
+
+:host ::ng-deep .p-button-text:hover {
+  background-color: #f8f9fa !important;
+  color: #495057 !important;
+}

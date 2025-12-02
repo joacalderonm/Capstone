@@ -1,0 +1,80 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="gastoForm" (ngSubmit)="guardarGasto()" class="gasto-form">
+    <div class="row">
+
+      <!-- Campo Número de Documento -->
+      <div class="col-md-6">
+        <label for="numeroDocumento" class="form-label">Número de Documento</label>
+        <input id="numeroDocumento" type="text" pInputText formControlName="numero_documento" placeholder="Ingrese el número de documento" class="w-full" required />
+        <small class="p-error" *ngIf="gastoForm.get('numero_documento')?.touched && gastoForm.get('numero_documento')?.invalid">
+          {{ getFieldError('numero_documento') }}
+        </small>
+      </div>
+
+      <!-- Campo Fecha -->
+      <div class="col-md-6">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input id="fecha" type="date" pInputText formControlName="fecha" class="w-full" required />
+        <small class="p-error" *ngIf="gastoForm.get('fecha')?.touched && gastoForm.get('fecha')?.invalid">
+          {{ getFieldError('fecha') }}
+        </small>
+      </div>
+
+      <!-- Campo Tipo de Gasto -->
+      <div class="col-md-6">
+        <label for="tipoGasto" class="form-label">Tipo de Gasto</label>
+        <p-select id="tipoGasto" [options]="tiposGasto" formControlName="id_tipo_gasto" placeholder="Seleccione un tipo de gasto" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="gastoForm.get('id_tipo_gasto')?.touched && gastoForm.get('id_tipo_gasto')?.invalid">
+          {{ getFieldError('id_tipo_gasto') }}
+        </small>
+      </div>
+
+      <!-- Campo Programa -->
+      <div class="col-md-6">
+        <label for="programa" class="form-label">Programa</label>
+        <p-select id="programa" [options]="programas" formControlName="id_programa" placeholder="Seleccione un programa" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="gastoForm.get('id_programa')?.touched && gastoForm.get('id_programa')?.invalid">
+          {{ getFieldError('id_programa') }}
+        </small>
+      </div>
+
+      <!-- Campo Producto Específico -->
+      <div class="col-md-6">
+        <label for="producto" class="form-label">Producto Específico</label>
+        <p-select id="producto" [options]="productos" formControlName="id_producto_subesp" placeholder="Seleccione un producto" styleClass="w-full"></p-select>
+        <small class="p-error" *ngIf="gastoForm.get('id_producto_subesp')?.touched && gastoForm.get('id_producto_subesp')?.invalid">
+          {{ getFieldError('id_producto_subesp') }}
+        </small>
+      </div>
+
+      <!-- Campo Valor -->
+      <div class="col-md-6">
+        <label for="valor" class="form-label">Valor</label>
+        <input id="valor" type="number" pInputText formControlName="valor" placeholder="Ingrese el valor" class="w-full" min="0" step="0.01" required />
+        <small class="p-error" *ngIf="gastoForm.get('valor')?.touched && gastoForm.get('valor')?.invalid">
+          {{ getFieldError('valor') }}
+        </small>
+      </div>
+
+    </div>
+
+    <!-- Campo Descripción -->
+    <div class="full-width-fields">
+      <div>
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea id="descripcion" pInputTextarea formControlName="descripcion" rows="3" placeholder="Ingrese descripción" class="w-full"></textarea>
+        <small class="p-error" *ngIf="gastoForm.get('descripcion')?.touched && gastoForm.get('descripcion')?.invalid">
+          {{ getFieldError('descripcion') }}
+        </small>
+      </div>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar gasto" type="submit" [disabled]="gastoForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

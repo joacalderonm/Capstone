@@ -1,0 +1,154 @@
+
+  <div class="header-container mb-4">
+    <h1>{{ isCerrada ? 'Planilla de Viáticos' : 'Editar planilla de Viáticos' }} {{ (datosPlantilla ? datosPlantilla.fecha_creacion : fecha) | date:'MMMM yyyy':'':'es' }}</h1>
+  </div>
+
+  <section class="seccion">
+    <div class="texto">
+      <h2>Información de la planilla</h2><br>
+    </div>
+
+    <div class="cards-grid">
+      <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Fecha: </span> {{ datosPlantilla ? (datosPlantilla.fecha_creacion | date:'dd-MM-yyyy') : (fecha | date:'dd-MM-yyyy') }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Nº resolución:</span> {{ datosPlantilla ? datosPlantilla.numero_plantilla : numero }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Unidad:</span> {{ datosPlantilla ? datosPlantilla.codigo_unidad : '' }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Departamento:</span> {{ datosPlantilla ? datosPlantilla.nombre_unidad : departamento }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+           <ng-template pTemplate="content">
+             <span>Autorizado por:</span> {{ datosPlantilla ? datosPlantilla.nombre_supervisor_completo : director }}
+           </ng-template>
+         </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Nombre:</span> {{ datosPlantilla ? datosPlantilla.nombre_usuario_completo : nombre }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>RUT:</span> {{ datosPlantilla ? datosPlantilla.rut_completo : rut }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Región de pertenencia:</span> {{ datosPlantilla ? datosPlantilla.nombre_region : regionp }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Calidad Jurídica:</span> {{ datosPlantilla ? datosPlantilla.tipo : cjurid }}
+          </ng-template>
+        </p-card>
+
+        <p-card styleClass="info-card">
+          <ng-template pTemplate="content">
+            <span>Grado E. U.:</span> {{ datosPlantilla ? datosPlantilla.id_grado : grado }}
+          </ng-template>
+        </p-card>
+    </div>
+  </section>
+
+
+  <section class="seccion">
+    <div class="section-header">
+      <h2>Anticipo de Viáticos</h2>
+      <button class="toggle-button" (click)="toggleSectionAnticipo(); $event.preventDefault()" [attr.aria-expanded]="isExpandedAnticipo">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedAnticipo}"></i>
+      </button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedAnticipo, 'collapsed': !isExpandedAnticipo}">
+      <app-new-anticipo *ngIf="!isCerrada" [idPlantilla]="datosPlantilla!.id_plantilla" (anticipoCreated)="onAnticipoCreated()"></app-new-anticipo>
+      <app-anticipos #listadoAnticipos [idPlantilla]="datosPlantilla!.id_plantilla" [isCerrada]="isCerrada" (refreshRequested)="onRefreshRequestedAnticipos()"></app-anticipos>
+      <div class="encargado-container">
+        <p>Encargado que autoriza este anticipo: <b>{{ datosPlantilla ? datosPlantilla.encargado_anticipo : director }}</b></p>
+        <button class="btn-crear asignar-btn" (click)="asignarEncargadoAnticipo()">Asignar encargado</button>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="seccion">
+    <div class="section-header">
+      <h2>Rendición del Cometido Nacional</h2>
+      <button class="toggle-button" (click)="toggleSection(); $event.preventDefault()" [attr.aria-expanded]="isExpanded">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpanded}"></i>
+      </button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpanded, 'collapsed': !isExpanded}">
+      <app-new-viatico *ngIf="!isCerrada" [idPlantilla]="datosPlantilla!.id_plantilla" (viaticoCreated)="onViaticoCreated()"></app-new-viatico>
+      <app-viaticos #listadoViaticos [idPlantilla]="datosPlantilla!.id_plantilla" [isCerrada]="isCerrada" (refreshRequested)="onRefreshRequested()"></app-viaticos>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="section-header">
+      <h2>Nómina de gastos reembolsables</h2>
+      <button class="toggle-button" (click)="toggleSectionGastos(); $event.preventDefault()" [attr.aria-expanded]="isExpandedGastos">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedGastos}"></i>
+      </button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedGastos, 'collapsed': !isExpandedGastos}">
+      <app-new-gasto-reembolsable *ngIf="!isCerrada" [idPlantilla]="datosPlantilla!.id_plantilla" (gastoCreated)="onGastoCreated()"></app-new-gasto-reembolsable>
+      <app-gastos #listadoGastos [idPlantilla]="datosPlantilla!.id_plantilla" [isCerrada]="isCerrada" (refreshRequested)="onRefreshRequestedGastos()"></app-gastos>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="texto">
+      <h2>Resumen de Rendición de Viáticos</h2>
+    </div>
+
+    <div class="resumen-card">
+      <div class="resumen-grid">
+        <div class="resumen-item">
+          <span class="resumen-label">(+) TOTAL ESPECIFICACION</span>
+          <span class="resumen-value">{{ formatCurrency(datosPlantilla?.total_viatico) }}</span>
+        </div>
+        <div class="resumen-item">
+          <span class="resumen-label">(+) GASTOS SEGÚN NOMINA</span>
+          <span class="resumen-value">{{ formatCurrency(datosPlantilla?.total_gastos) }}</span>
+        </div>
+        <div class="resumen-item">
+          <span class="resumen-label">(=) TOTAL LIQUIDACION</span>
+          <span class="resumen-value">{{ formatCurrency((datosPlantilla?.total_viatico || 0) + (datosPlantilla?.total_gastos || 0)) }}</span>
+        </div>
+        <div class="resumen-item">
+          <span class="resumen-label">(-) ANTICIPO VIATICO</span>
+          <span class="resumen-value">{{ formatCurrency(datosPlantilla?.total_anticipo) }}</span>
+        </div>
+        <div class="resumen-item saldo">
+          <span class="resumen-label">{{ getSaldoLabel(datosPlantilla?.total_general) }}</span>
+          <span class="resumen-value">{{ formatCurrency(datosPlantilla?.total_general) }}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="bloque">
+    <p-button *ngIf="!isCerrada" label="Asignar Encargado" severity="primary" [style]="{'width': '100%', 'margin-bottom': '10px'}" (onClick)="CerrarPlanilla()"></p-button>
+    <p-button label="Exportar como PDF" (onClick)="exportToFormPDF()" severity="primary" outlined [style]="{'width': '100%'}"></p-button>
+  </div>
+

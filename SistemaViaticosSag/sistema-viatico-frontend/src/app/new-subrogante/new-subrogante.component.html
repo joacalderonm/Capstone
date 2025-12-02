@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Agregar Subrogante</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="subroganteForm" (ngSubmit)="onSubmit()" class="user-form">
+    <div class="row">
+      <div class="col-md-12">
+        <p-select id="usuario" [options]="usuarios" formControlName="usuario" placeholder="Seleccione un usuario" styleClass="w-full" hideOnScroll="false"></p-select>
+        <small class="p-error" *ngIf="subroganteForm.get('usuario')?.touched && subroganteForm.get('usuario')?.invalid">
+          {{ getFieldError('usuario') }}
+        </small>
+      </div>
+    </div>
+
+    <div class="button-group">
+      <p-button label="Cancelar" [text]="true" (onClick)="onCancel()"></p-button>
+      <p-button label="Agregar" type="submit" [disabled]="subroganteForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

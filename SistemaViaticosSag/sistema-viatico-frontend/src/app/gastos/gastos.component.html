@@ -1,0 +1,40 @@
+<p-card styleClass="input-card">
+  <ng-template pTemplate="content">
+    <p-table [value]="gastos" [loading]="loading" responsiveLayout="scroll">
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Programa</th>
+          <th>Producto Específico</th>
+          <th>Número documento</th>
+          <th>Tipo de Gasto</th>
+          <th>Fecha</th>
+          <th>Valor</th>
+          <th *ngIf="!isCerrada">Opciones</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-gasto>
+        <tr>
+          <td>{{ gasto.codigo_programa }}</td>
+          <td>{{ gasto.codigo_subesp }}</td>
+          <td>{{ gasto.numero_documento }}</td>
+          <td>{{ gasto.descripcion_gasto }}</td>
+          <td>{{ formatDate(gasto.fecha) }}</td>
+          <td>{{ formatCurrency(gasto.valor) }}</td>
+          <td *ngIf="!isCerrada">
+            <p-button icon="fas fa-pencil" text (click)="editarGasto(gasto)"></p-button>
+            <p-button icon="fas fa-trash" text (click)="eliminarGasto(gasto)"></p-button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td [attr.colspan]="isCerrada ? 6 : 7" class="text-center">No hay gastos reembolsables registrados para esta plantilla</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </ng-template>
+</p-card>

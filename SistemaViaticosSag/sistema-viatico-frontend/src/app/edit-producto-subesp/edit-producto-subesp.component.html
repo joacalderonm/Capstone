@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="productoForm" (ngSubmit)="guardarProducto()" class="user-form">
+
+    <!-- Campo Código Subespecie -->
+    <div class="form-field">
+      <label for="codigo" class="form-label">Código Subespecie</label>
+      <input id="codigo" type="text" pInputText formControlName="codigo_subesp" class="w-full" required />
+      <small class="p-error" *ngIf="productoForm.get('codigo_subesp')?.touched && productoForm.get('codigo_subesp')?.invalid">
+        {{ getFieldError('codigo_subesp') }}
+      </small>
+    </div>
+
+    <!-- Campo Descripción -->
+    <div class="form-field">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <input id="descripcion" type="text" pInputText formControlName="descripcion" class="w-full" />
+      <small class="p-error" *ngIf="productoForm.get('descripcion')?.touched && productoForm.get('descripcion')?.invalid">
+        {{ getFieldError('descripcion') }}
+      </small>
+    </div>
+
+    <!-- Campo Estado -->
+    <div class="form-field">
+      <label for="activo" class="form-label">Estado</label>
+      <p-select
+        id="activo"
+        [options]="estadoOptions"
+        formControlName="activo"
+        placeholder="Seleccione estado"
+        styleClass="w-full"
+      ></p-select>
+      <small class="p-error" *ngIf="productoForm.get('activo')?.touched && productoForm.get('activo')?.invalid">
+        {{ getFieldError('activo') }}
+      </small>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar producto" type="submit" [disabled]="productoForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,47 @@
+<h2 mat-dialog-title>Actualizar Valores por Rango de Grados</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="gradoForm" (ngSubmit)="onSubmit()" class="grado-form">
+    <div class="input-row">
+      <div class="input-group">
+        <label for="id_inicio">Desde Grado</label>
+        <p-inputNumber id="id_inicio" formControlName="id_inicio" styleClass="w-full"></p-inputNumber>
+      </div>
+      <div class="input-group">
+        <label for="id_fin">Hasta Grado</label>
+        <p-inputNumber id="id_fin" formControlName="id_fin" styleClass="w-full"></p-inputNumber>
+      </div>
+      <div class="input-group">
+        <label for="valor_porcentaje_100">100%</label>
+        <p-inputNumber id="valor_porcentaje_100" formControlName="valor_porcentaje_100" styleClass="w-full"></p-inputNumber>
+      </div>
+      <div class="input-group">
+        <label for="valor_porcentaje_60">60%</label>
+        <p-inputNumber id="valor_porcentaje_60" formControlName="valor_porcentaje_60" styleClass="w-full"></p-inputNumber>
+      </div>
+      <div class="input-group">
+        <label for="valor_porcentaje_50">50%</label>
+        <p-inputNumber id="valor_porcentaje_50" formControlName="valor_porcentaje_50" styleClass="w-full"></p-inputNumber>
+      </div>
+      <div class="input-group">
+        <label for="valor_porcentaje_40">40%</label>
+        <p-inputNumber id="valor_porcentaje_40" formControlName="valor_porcentaje_40" styleClass="w-full"></p-inputNumber>
+      </div>
+    </div>
+    <div class="input-row dates-row">
+      <div class="input-group">
+        <label for="fecha_efectiva">Desde</label>
+        <input type="date" id="fecha_efectiva" formControlName="fecha_efectiva" class="form-control">
+      </div>
+      <div class="input-group">
+        <label for="fecha_vencimiento">Hasta</label>
+        <input type="date" id="fecha_vencimiento" formControlName="fecha_vencimiento" class="form-control">
+      </div>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <p-button label="Cancelar" [text]="true" (onClick)="onCancel()"></p-button>
+  <p-button label="Guardar" type="submit" (onClick)="onSubmit()" [disabled]="gradoForm.invalid"></p-button>
+</mat-dialog-actions>

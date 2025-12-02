@@ -1,0 +1,31 @@
+
+
+.error-snackbar {
+  background-color: #d32f2f !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.error-snackbar button.mat-button {
+  color: #ffcdd2 !important;
+}
+
+.error-snackbar .mat-mdc-button-base {
+  color: #ffcdd2 !important;
+}
+
+.success-snackbar {
+  background-color: #28a745 !important;
+  color: white !important;
+  border-radius: 8px;
+  padding: 10px 20px;
+}
+
+.success-snackbar button.mat-button {
+  color: #d4edda !important;
+}
+
+.success-snackbar .mat-mdc-button-base {
+  color: #d4edda !important;
+}

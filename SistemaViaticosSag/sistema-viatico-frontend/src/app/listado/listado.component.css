@@ -1,0 +1,336 @@
+:host {
+  display: block;
+  min-height: 96vh;
+}
+
+
+ h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+a{
+    color: black
+  }
+
+.seccion h3 {
+    margin-bottom: 10px !important;
+    margin-top: 50px !important;
+    font-weight: 600 !important;
+    font-size: large !important;
+  }
+
+  .seccion {
+    border : 1px solid #ebebeb;
+    background-color: #fff;
+    border-radius: 8px;
+    padding-top: 30px;
+    padding-bottom: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .seccion p {
+    margin: 0
+  }
+
+  .seccion a{
+    text-decoration: none;
+  }
+
+  .texto {
+    text-align: left !important;
+  }
+
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 20px;
+  }
+
+  .header-container h1 {
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 1.2;
+    display: flex;
+    align-items: center;
+  }
+  .text-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .dropdown-menu{
+    width: 100%;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      align-items:normal;
+      gap: 20px;
+    }
+
+    .text-container {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .dropdown {      
+      width: 100%;
+    }
+
+    #yearDropdown{
+      width: 100%;
+      justify-content: space-between;
+    }
+
+      .select-container {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding-left: 0;
+      }
+      .select-container select,
+      .select-container .custom-select {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      /* Limitar el ancho del título principal para evitar solapamiento con el botón del sidebar móvil */
+      .header-container h1 {
+        max-width: 77vw;
+        width: 77vw;
+        word-break: break-word;
+      }
+
+  }
+
+  .service-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .service-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border: 1px solid #e1e1e1;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .service-item:hover {
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon {
+    border-radius: 6px;
+    background-color: rgb(184, 184, 184);
+  }
+
+  /* .icon.active {
+    background-color: #0D6EFD;
+  } */
+  
+  .icon img {
+    width: 50px;
+    height: 50px;    
+    padding: 10px;
+  }
+  
+  .service-info {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  
+  .service-name {
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 0px;
+    margin-bottom: 10px !important;
+  }
+  
+  .service-type {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0 0;
+  }
+  
+  .status {
+    display: flex;
+  }
+  
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    background-color: rgb(184, 184, 184);
+  }
+  
+  .status-dot.active {
+    background-color: #0D6EFD; 
+  }
+  
+  .status-text {
+    font-size: 14px;
+    color: gray;
+  }
+
+  /* .status-text.active {
+    color: #0D6EFD;
+  } */
+
+  .loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .loading-content {
+    color: #fff;
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .display-6{
+      font-size: 40px;
+      font-weight: 200;
+    }
+  
+  @media screen and (max-width: 768px) {
+    .service-item {
+      padding: 12px;
+    }
+
+    .service-info {
+      margin-left: 10px;
+      
+    }
+  
+    .icon img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .service-name {
+      font-size: 20px;
+      margin-bottom: 5px !important;
+    }
+  
+    .service-type {
+      font-size: 12px;
+    }
+  
+    .status-text {
+      font-size: 15px;
+    }
+    
+    .display-6{
+      font-size: 25px;
+    }
+  }
+
+  /* --- Estilos para el nuevo botón "Crear" --- */
+.btn-crear {
+  background-color: #0D6EFD; /* Azul primario de Bootstrap */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-crear:hover {
+  background-color: #0b5ed7; /* Un azul un poco más oscuro */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Estilos para el contenedor del select con icono --- */
+.select-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0 0 0 12px; /* Padding solo a la izquierda para el icono */
+  background-color: transparent;
+  transition: border-color 0.2s;
+}
+
+.select-container:focus-within {
+  border-color: #0D6EFD;
+  outline: 2px solid #a1c9f7;
+}
+
+.select-container i {
+  color: #6b7280; /* Color del icono */
+  font-size: 1em;
+}
+
+/* --- Estilos actualizados para el select personalizado --- */
+.custom-select {
+  /* Quitamos bordes y fondos, ya que ahora están en el contenedor */
+  background-color: transparent;
+  border: none;
+  
+  /* Apariencia y flecha (solo la flecha) */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+
+  /* Padding y tamaño */
+  padding: 10px 40px 10px 12px; /* Espacio para el texto y la flecha */
+  
+  /* Tipografía */
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  width: 100%; /* Para que ocupe el espacio disponible en el contenedor */
+}
+
+.custom-select:focus {
+  outline: none; /* El foco ahora lo maneja el contenedor */
+}
+
+/* --- Estilos para el mensaje de "sin datos" --- */
+.no-data-message {
+  color: #6c757d; /* Gris tenue */
+  font-style: italic;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 16px;
+}

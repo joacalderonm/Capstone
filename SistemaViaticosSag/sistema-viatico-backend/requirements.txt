@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+pyodbc
+sqlalchemy
+pydantic
+python-dotenv
+pydantic-settings
+firebase-admin

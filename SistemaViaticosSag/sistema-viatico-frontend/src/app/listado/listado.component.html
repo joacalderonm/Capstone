@@ -1,0 +1,46 @@
+ 
+ <div class="header-container mb-4">
+    <h1>Listado de planillas</h1>  
+    <button class="btn-crear" (click)="CrearNuevaPlanilla()">
+      Crear nueva planilla
+    </button>
+  </div> 
+
+ <section class="seccion">     
+    <div class="text-container">
+        <p>Listado de todas las planillas creadas en un mismo año.</p>
+
+      <div class="select-container">
+        <i class="fas fa-calendar-alt"></i>
+        <select class="custom-select" [(ngModel)]="selectedYear" (ngModelChange)="selectYear($event)">
+          <option *ngFor="let year of years" [ngValue]="year">
+            {{ year }}
+          </option>
+        </select>
+      </div>
+    </div>  
+
+    <div class="service-list" *ngIf="!isLoading">
+      <div *ngFor="let plantilla of plantillas" class="service-item" (click)="navegarAEditar(plantilla)">
+        <div class="icon" [style.background-color]="plantilla.color_hex">
+          <img src="/assets/file.png" alt="icon" />
+        </div>
+        <div class="service-info">
+          <p class="service-name mb-2">{{ getNombreMes(plantilla.mes) }}</p>
+          <div class="status">
+              <span class="status-text">{{ plantilla.nombre_estado_plantilla }}</span>
+          </div>
+        </div>
+        <span class="display-6">{{ plantilla.total_general ? '$' + plantilla.total_general.toLocaleString('es-CL') : '$0' }}</span>
+      </div>
+
+      <div *ngIf="plantillas.length === 0" class="no-data-message">
+        No existen planillas para el año seleccionado
+      </div>
+    </div>
+
+    <div *ngIf="isLoading" class="text-center py-4">
+      <p>Cargando plantillas...</p>
+    </div>
+      
+  </section> 

@@ -1,0 +1,50 @@
+.error-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error-card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 40px;
+    width: 600px;
+    max-width: 90%;
+  }
+  
+  .error-header h1 {
+    font-size: 4rem;
+    color: gray;
+    margin: 0;
+  }
+  
+  .error-body h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+  }
+  
+  .error-body p {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 30px;
+  }
+  
+  .btn-home {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: #007bff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-home:hover {
+    background-color: #0056b3;
+  }
+  

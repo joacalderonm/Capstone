@@ -1,0 +1,62 @@
+/* footer.component.css */
+.footer {  
+  background-color: lightgrey;
+  color: white;
+  text-align: center;
+  font-size: small;
+  padding: 30px;
+  display: flex; /* Usar flexbox */
+  justify-content: space-between; /* Justificar el contenido */
+  align-items: center; /* Alinear los elementos verticalmente */
+  flex-wrap: wrap; /* Permitir que los elementos se envuelvan si es necesario */
+  margin-top: 35px;
+}
+
+.footer-content {
+  display: flex; /* Usar flexbox */
+  justify-content: space-between; /* Justificar el contenido */
+  align-items: center; /* Alinear los elementos verticalmente */
+  width: 100%; /* Asegurar que el contenido ocupe todo el ancho del footer */
+}
+
+.footer-links {
+  width: auto;
+  list-style: none;
+  padding: 0;
+  display: flex; /* Usar flexbox */
+  gap: 10px; /* Espacio entre los elementos */
+}
+
+.footer-links li {
+  margin: 0;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.logo {
+  width: 150px;
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    display: block;
+    justify-content: center;
+    align-items: center;
+  }
+  .footer-links{
+    display: flex;
+    text-align: center;
+  }
+
+  .footer img{
+    margin: 20px;
+  }
+}
+

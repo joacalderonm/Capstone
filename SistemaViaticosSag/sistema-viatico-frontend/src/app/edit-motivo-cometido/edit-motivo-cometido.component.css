@@ -1,0 +1,45 @@
+.user-form {
+  padding-top: 1rem;
+  position: relative;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.form-field {
+  margin-bottom: 1.5rem;
+}
+
+/* Añade margen inferior a cada columna para espaciar los campos */
+.col-md-6 {
+  margin-bottom: 1rem;
+}
+
+.p-error {
+  display: block;
+  min-height: 20px;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* Clases de PrimeFlex para alinear botones */
+.flex {
+  display: flex;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+/* Asegura que los inputs y selects de PrimeNG ocupen todo el ancho */
+.w-full {
+  width: 100%;
+}

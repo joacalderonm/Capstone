@@ -1,0 +1,134 @@
+<div class="header-container mb-4">
+  <h1>Panel Principal</h1>
+</div>
+
+<section class="seccion">
+  <div class="texto">
+    <h2>Resumen de Viáticos</h2>
+    <p class="mb-4">Revisa tus estadísticas de manera rápida y clara.</p>
+  </div>
+
+  <div class="indicator-row">
+    <p-card styleClass="indicator-card">
+      <ng-template pTemplate="title"
+        >Monto total gastado por producto</ng-template
+      >
+      <ng-template pTemplate="content">
+        <select class="custom-select" [(ngModel)]="selectedProduct">
+          <option *ngFor="let product of products" [ngValue]="product">
+            {{ product.name }}
+          </option>
+        </select>
+        <p class="indicator-value">
+          {{
+            selectedProduct
+              ? (selectedProduct.code
+                | currency : "CLP" : "symbol-narrow" : "1.0-0")
+              : "0"
+          }}
+        </p>
+      </ng-template>
+    </p-card>
+
+    <p-card styleClass="indicator-card">
+      <ng-template pTemplate="title">Monto total gastado en el mes</ng-template>
+      <ng-template pTemplate="content">
+        <p class="selec">
+          <b>{{ currentMonth }}</b>
+        </p>
+        <p class="indicator-value">
+          {{ mes | currency : "CLP" : "symbol-narrow" : "1.0-0" }}
+        </p>
+      </ng-template>
+    </p-card>
+
+    <p-card styleClass="indicator-card">
+      <ng-template pTemplate="title">Monto total gastado en el año</ng-template>
+      <ng-template pTemplate="content">
+        <p class="selec">
+          <b>{{ currentYear }}</b>
+        </p>
+        <p class="indicator-value">
+          {{ ano | currency : "CLP" : "symbol-narrow" : "1.0-0" }}
+        </p>
+      </ng-template>
+    </p-card>
+  </div>
+</section>
+
+<!-- El resto del archivo permanece igual -->
+<section class="seccion">
+  <div class="texto">
+    <h2>Últimas Rendiciones de Viáticos</h2>
+    <p class="mb-4">
+      Aquí puedes ver un resumen de tus rendiciones de viáticos más recientes.
+    </p>
+  </div>
+
+  <div class="table-responsive">
+    <table mat-table [dataSource]="dataSource">
+      <!-- Definiciones de las columnas (sin cambios) -->
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef>AÑO</th>
+        <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="month">
+        <th mat-header-cell *matHeaderCellDef>MES</th>
+        <td mat-cell *matCellDef="let element">{{ element.month }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>N° RESOLUCIÓN</th>
+        <td mat-cell *matCellDef="let element">{{ element.number }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="monto">
+        <th mat-header-cell *matHeaderCellDef>MONTO</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.monto | currency : "CLP" : "symbol-narrow" : "1.0-0" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="estado">
+        <th mat-header-cell *matHeaderCellDef>ESTADO</th>
+        <td mat-cell *matCellDef="let element">
+          <span
+            class="badge"
+            [ngClass]="{
+              'bg-primary': element.estado === 'Activa',
+              'bg-secondary': element.estado === 'Cerrada'
+            }"
+          >
+            {{ element.estado }}
+          </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef>OPCIONES</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="btn-group" role="group">
+            <button
+              type="button"
+              class="btn-custom"
+              (click)="verPlantilla(element.id_plantilla)"
+            >
+              Ver
+            </button>
+            <button
+              type="button"
+              class="btn-custom"
+              (click)="descargarPDF(element.id_plantilla)"
+            >
+              Descargar
+            </button>
+          </div>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</section>

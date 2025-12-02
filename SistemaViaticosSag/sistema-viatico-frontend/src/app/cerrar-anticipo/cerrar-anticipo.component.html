@@ -1,0 +1,25 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="cerrarForm" (ngSubmit)="asignarEncargado()" class="user-form">
+    <div class="row">
+
+      <p>Asignar al jefe que autoriza el anticipo</p>
+
+      <!-- Campo Encargado -->
+      <div class="col-md-12">
+        <p-select id="encargado" [options]="usuarios" formControlName="encargado" placeholder="Seleccione un encargado" styleClass="w-full" hideOnScroll="false"></p-select>
+        <small class="p-error" *ngIf="cerrarForm.get('encargado')?.touched && cerrarForm.get('encargado')?.invalid">
+          {{ getFieldError('encargado') }}
+        </small>
+      </div>
+
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Asignar encargado" type="submit" [disabled]="cerrarForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

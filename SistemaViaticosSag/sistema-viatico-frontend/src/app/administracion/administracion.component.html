@@ -1,0 +1,327 @@
+<main>
+  <div class="header-container mb-4">
+    <h1>Panel de Administración</h1>
+  </div>
+
+  <section class="seccion">
+    <div class="section-header">
+      <div class="texto">
+        <h2>Cuentas Presupuestarias</h2>
+        <p class="mb-4">Administra las cuentas presupuestarias del sistema.</p>
+      </div>
+      <button class="toggle-button" (click)="toggleSectionCuentas(); $event.preventDefault()" [attr.aria-expanded]="isExpandedCuentas">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedCuentas}"></i>
+      </button>
+    </div>
+    <div *ngIf="isExpandedCuentas">
+      <button class="btn-crear" style="width: 100%;" (click)="crearCuenta()">Agregar cuenta presupuestaria</button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedCuentas, 'collapsed': !isExpandedCuentas}">
+      <div class="table-responsive mt-4">
+        <table mat-table [dataSource]="dataSourceCuentas">
+
+          <ng-container matColumnDef="codigo_presupuestaria">
+            <th mat-header-cell *matHeaderCellDef>Código</th>
+            <td mat-cell *matCellDef="let element">{{element.codigo_presupuestaria}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre_presupuestaria">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre_presupuestaria}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="status-tag" [ngClass]="{'activo': element.activo, 'inactivo': !element.activo}">
+                {{ element.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="btn-group">
+                <button type="button" class="btn-toggle" (click)="toggleCuentaEstado(element)">{{ element.activo ? 'Desactivar' : 'Activar' }}</button>
+                <button type="button" class="btn-edit" (click)="editarCuenta(element)">Editar</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCuentas"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCuentas;"></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="section-header">
+      <div class="texto">
+        <h2>Motivos de Cometido</h2>
+        <p class="mb-4">Administra los motivos de cometido del sistema.</p>
+      </div>
+      <button class="toggle-button" (click)="toggleSectionMotivos(); $event.preventDefault()" [attr.aria-expanded]="isExpandedMotivos">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedMotivos}"></i>
+      </button>
+    </div>
+    <div *ngIf="isExpandedMotivos">
+      <button class="btn-crear" style="width: 100%;" (click)="crearMotivo()">Agregar motivo de cometido</button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedMotivos, 'collapsed': !isExpandedMotivos}">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceMotivos" class="motivos-table">
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let element">{{element.descripcion}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="status-tag" [ngClass]="{'activo': element.activo, 'inactivo': !element.activo}">
+                {{ element.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="btn-group">
+                <button type="button" class="btn-toggle" (click)="toggleMotivoEstado(element)">{{ element.activo ? 'Desactivar' : 'Activar' }}</button>
+                <button type="button" class="btn-edit" (click)="editarMotivo(element)">Editar</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsMotivos"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsMotivos;"></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+    <section class="seccion">
+      <div class="section-header">
+        <div class="texto">
+          <h2>Unidades</h2>
+          <p class="mb-4">Administra las unidades del sistema.</p>
+        </div>
+        <button class="toggle-button" (click)="toggleSectionUnidades(); $event.preventDefault()" [attr.aria-expanded]="isExpandedUnidades">
+          <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedUnidades}"></i>
+        </button>
+      </div>
+      <div *ngIf="isExpandedUnidades">
+        <button class="btn-crear" style="width: 100%;" (click)="crearUnidad()">Agregar unidad</button>
+      </div>
+      <div class="collapsible-content" [ngClass]="{'expanded': isExpandedUnidades, 'collapsed': !isExpandedUnidades}">
+        <div class="table-responsive">
+          <table mat-table [dataSource]="dataSourceUnidades">
+ 
+            <ng-container matColumnDef="codigo_unidad">
+              <th mat-header-cell *matHeaderCellDef>Código</th>
+              <td mat-cell *matCellDef="let element">{{element.codigo_unidad}}</td>
+            </ng-container>
+ 
+            <ng-container matColumnDef="nombre_unidad">
+              <th mat-header-cell *matHeaderCellDef>Nombre</th>
+              <td mat-cell *matCellDef="let element">{{element.nombre_unidad}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="nombre_jefe">
+              <th mat-header-cell *matHeaderCellDef>Jefe Unidad</th>
+              <td mat-cell *matCellDef="let element">{{element.nombre_jefe}}</td>
+            </ng-container>
+ 
+            <ng-container matColumnDef="activo">
+              <th mat-header-cell *matHeaderCellDef>Estado</th>
+              <td mat-cell *matCellDef="let element">
+                <span class="status-tag" [ngClass]="{'activo': element.activo, 'inactivo': !element.activo}">
+                  {{ element.activo ? 'Activo' : 'Inactivo' }}
+                </span>
+              </td>
+            </ng-container>
+ 
+            <ng-container matColumnDef="opciones">
+              <th mat-header-cell *matHeaderCellDef>Opciones</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="btn-group">
+                  <button type="button" class="btn-toggle" (click)="toggleUnidadEstado(element)">{{ element.activo ? 'Desactivar' : 'Activar' }}</button>
+                  <button type="button" class="btn-edit" (click)="editarUnidad(element)">Editar</button>
+                </div>
+              </td>
+            </ng-container>
+ 
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsUnidades"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsUnidades;"></tr>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+  <section class="seccion">
+    <div class="section-header">
+      <div class="texto">
+        <h2>Producto Específico</h2>
+        <p class="mb-4">Administra los productos específicos del sistema.</p>
+      </div>
+      <button class="toggle-button" (click)="toggleSectionProductos(); $event.preventDefault()" [attr.aria-expanded]="isExpandedProductos">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedProductos}"></i>
+      </button>
+    </div>
+    <div *ngIf="isExpandedProductos">
+      <button class="btn-crear" style="width: 100%;" (click)="crearProducto()">Agregar producto específico</button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedProductos, 'collapsed': !isExpandedProductos}">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceProductos">
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Codigo</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripción</th>
+            <td mat-cell *matCellDef="let element">{{element.descripcion}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="status-tag" [ngClass]="{'activo': element.activo, 'inactivo': !element.activo}">
+                {{ element.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="btn-group" role="group">
+                <button type="button" class="btn-toggle" (click)="toggleProductoEstado(element)">{{ element.activo ? 'Desactivar' : 'Activar' }}</button>
+                <button type="button" class="btn-edit" (click)="editarProducto(element)">Editar</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsProductos"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsProductos;"></tr>
+        </table>
+        <mat-paginator [pageSize]="10" [hidePageSize]="true" [showFirstLastButtons]="false"></mat-paginator>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="section-header">
+      <div class="texto">
+        <h2>Programas</h2>
+        <p class="mb-4">Administra los programas del sistema.</p>
+      </div>
+      <button class="toggle-button" (click)="toggleSectionProgramas(); $event.preventDefault()" [attr.aria-expanded]="isExpandedProgramas">
+        <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedProgramas}"></i>
+      </button>
+    </div>
+    <div *ngIf="isExpandedProgramas">
+      <button class="btn-crear" style="width: 100%;" (click)="crearPrograma()">Agregar programa</button>
+    </div>
+    <div class="collapsible-content" [ngClass]="{'expanded': isExpandedProgramas, 'collapsed': !isExpandedProgramas}">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceProgramas">
+
+          <ng-container matColumnDef="codigo">
+            <th mat-header-cell *matHeaderCellDef>Código</th>
+            <td mat-cell *matCellDef="let element">{{element.codigo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="activo">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element">
+              <span class="status-tag" [ngClass]="{'activo': element.activo, 'inactivo': !element.activo}">
+                {{ element.activo ? 'Activo' : 'Inactivo' }}
+              </span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="opciones">
+            <th mat-header-cell *matHeaderCellDef>Opciones</th>
+            <td mat-cell *matCellDef="let element">
+              <div class="btn-group">
+                <button type="button" class="btn-toggle" (click)="toggleProgramaEstado(element)">{{ element.activo ? 'Desactivar' : 'Activar' }}</button>
+                <button type="button" class="btn-edit" (click)="editarPrograma(element)">Editar</button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsProgramas"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsProgramas;"></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+    <section class="seccion">
+      <div class="section-header">
+        <div class="texto">
+          <h2>Valor Grado Escala</h2>
+          <p class="mb-4">Actualizacion de los valores por viatico segun el grado escala.</p>
+        </div>
+        <button class="toggle-button" (click)="toggleSectionValores(); $event.preventDefault()" [attr.aria-expanded]="isExpandedValores">
+          <i class="fas fa-chevron-up" [ngClass]="{'rotated': !isExpandedValores}"></i>
+        </button>
+      </div>
+      <div *ngIf="isExpandedValores">
+        <button class="btn-crear" style="width: 100%;" (click)="actualizarValores()">Actualizar Valores</button>
+      </div>
+      <div class="collapsible-content" [ngClass]="{'expanded': isExpandedValores, 'collapsed': !isExpandedValores}">
+      <div class="table-responsive">
+        <table mat-table [dataSource]="dataSourceGrados">
+
+          <ng-container matColumnDef="id_grado">
+            <th mat-header-cell *matHeaderCellDef>Grado</th>
+            <td mat-cell *matCellDef="let element">{{element.id_grado}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_porcentaje_100">
+            <th mat-header-cell *matHeaderCellDef>100%</th>
+            <td mat-cell *matCellDef="let element">{{formatNumber(element.valor_porcentaje_100)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_porcentaje_60">
+            <th mat-header-cell *matHeaderCellDef>60%</th>
+            <td mat-cell *matCellDef="let element">{{formatNumber(element.valor_porcentaje_60)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_porcentaje_50">
+            <th mat-header-cell *matHeaderCellDef>50%</th>
+            <td mat-cell *matCellDef="let element">{{formatNumber(element.valor_porcentaje_50)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor_porcentaje_40">
+            <th mat-header-cell *matHeaderCellDef>40%</th>
+            <td mat-cell *matCellDef="let element">{{formatNumber(element.valor_porcentaje_40)}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsGrados"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsGrados;"></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+</main>

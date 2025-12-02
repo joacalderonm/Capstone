@@ -1,0 +1,275 @@
+
+:host {
+  display: block;  
+  min-height: 96vh;
+}
+
+.seccion {
+  border : 1px solid #ebebeb;
+  background-color: #fff;
+  border-radius: 8px;
+  padding-top: 30px;
+  padding-bottom: 25px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 20px;
+}
+
+.header-container h1 {
+  margin-bottom: 0;
+  margin-top: 0;
+  line-height: 1.2;
+  display: flex;
+  align-items: center;
+}
+
+.header-container .btn-crear {
+  align-self: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.text-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* --- Estilos para la tabla (Material) --- */
+
+.table-responsive {
+  border-radius: 15px;
+  margin-top: 20px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* Centrar y limitar el ancho del contenido principal como en historial */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header-container {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+table.mat-mdc-table {
+  border-radius: 15px;
+  width: 100%;
+  min-width: 600px;
+}
+
+
+
+@media (max-width: 768px) {
+  .table-responsive {
+    border-radius: 12px;
+    min-width: 0;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 4px;
+  }
+  table.mat-mdc-table {
+    min-width: 400px;
+    width: 100%;
+    font-size: 13px;
+  }
+  .header-container {
+    max-width: 100vw;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.mat-mdc-table {
+  background-color: #f4f4f4;
+}
+
+th, td {
+  text-align: center;
+}
+
+.mat-mdc-row:hover {
+  background-color: white;
+}
+
+/* --- Estilos para el botón "Crear" --- */
+.btn-crear {
+  background-color: #0D6EFD;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-crear:hover {
+  background-color: #0b5ed7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Estilos para el contenedor del select con icono --- */
+.select-container {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0 0 0 12px;
+  background-color: transparent;
+  transition: border-color 0.2s;
+}
+
+.select-container:focus-within {
+  border-color: #0D6EFD;
+  outline: 2px solid #a1c9f7;
+}
+
+.select-container i {
+  color: #6b7280;
+  font-size: 1em;
+}
+
+/* --- Estilos para el select personalizado --- */
+.custom-select {
+  background-color: transparent;
+  border: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.75rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em;
+  padding: 10px 40px 10px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  cursor: pointer;
+  width: 100%;
+}
+
+.custom-select:focus {
+  outline: none;
+}
+
+/* --- Estilos para el grupo de botones de la tabla --- */
+.btn-group {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.btn-toggle, .btn-edit {
+  background-color: #fff;
+  border: none;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+  transition: background-color 0.2s;
+}
+
+.btn-toggle {
+  border-radius: 6px 0 0 6px;
+  border-right: 1px solid #ccc;
+}
+
+.btn-edit {
+  border-radius: 0 6px 6px 0;
+}
+
+.btn-toggle:hover, .btn-edit:hover {
+  background-color: #f0f0f0;
+}
+
+.btn-toggle:focus, .btn-edit:focus {
+  outline: 2px solid #a1c9f7;
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* --- Estilos para las insignias (badges) de estado --- */
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500;
+}
+
+.bg-primary {
+  background-color: #0D6EFD;
+}
+
+.bg-secondary {
+  background-color: #6c757d;
+}
+
+/* --- Estilos para tags de estado --- */
+.status-tag {
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-tag.activo {
+  background-color: #0D6EFD;
+  color: white;
+}
+
+.status-tag.inactivo {
+  background-color: #6c757d;
+  color: white;
+}
+
+/* --- Media queries para responsividad --- */
+@media (max-width: 768px) {
+  .header-container, .text-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+  }
+  .btn-crear {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .filtros-container {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  /* Limitar el ancho del título principal para evitar solapamiento con el botón del sidebar móvil */
+  .header-container h1 {
+    max-width: 77vw;
+    width: 77vw;
+    word-break: break-word;
+  }
+}

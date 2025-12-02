@@ -1,0 +1,45 @@
+<h2 mat-dialog-title>{{ tituloFormulario }}</h2>
+
+<mat-dialog-content>
+  <app-loading></app-loading>
+  <form [formGroup]="motivoForm" (ngSubmit)="guardarMotivo()" class="user-form">
+
+    <!-- Campo Nombre -->
+    <div class="form-field">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input id="nombre" type="text" pInputText formControlName="nombre_cometido" class="w-full" required />
+      <small class="p-error" *ngIf="motivoForm.get('nombre_cometido')?.touched && motivoForm.get('nombre_cometido')?.invalid">
+        {{ getFieldError('nombre_cometido') }}
+      </small>
+    </div>
+
+    <!-- Campo Descripción -->
+    <div class="form-field">
+      <label for="descripcion" class="form-label">Descripción</label>
+      <input id="descripcion" type="text" pInputText formControlName="descripcion_cometido" class="w-full" required />
+      <small class="p-error" *ngIf="motivoForm.get('descripcion_cometido')?.touched && motivoForm.get('descripcion_cometido')?.invalid">
+        {{ getFieldError('descripcion_cometido') }}
+      </small>
+    </div>
+
+    <!-- Campo Estado -->
+    <div class="form-field">
+      <label for="activo" class="form-label">Estado</label>
+      <p-select
+        id="activo"
+        [options]="estadoOptions"
+        formControlName="activo"
+        placeholder="Seleccione estado"
+        styleClass="w-full"
+      ></p-select>
+      <small class="p-error" *ngIf="motivoForm.get('activo')?.touched && motivoForm.get('activo')?.invalid">
+        {{ getFieldError('activo') }}
+      </small>
+    </div>
+
+    <div class="flex justify-content-end gap-2 mt-4">
+      <p-button label="Cancelar" [text]="true" (onClick)="dialogRef.close()"></p-button>
+      <p-button label="Actualizar motivo" type="submit" [disabled]="motivoForm.invalid"></p-button>
+    </div>
+  </form>
+</mat-dialog-content>

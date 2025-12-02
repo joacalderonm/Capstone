@@ -1,0 +1,72 @@
+<main>
+  <app-loading></app-loading>
+  <div class="header-container mb-4">
+    <h1>Historial de Planillas de la unidad</h1>
+  </div>
+
+  <section class="seccion">
+    <div class="text-container mb-4">
+      <p class="mb-0">Listado de todas las planillas completadas en la unidad: <br> <b>{{ codigo_unidad }}</b>  {{ nombre_unidad }}</p>
+      
+      <div class="selectores-fecha" style="display: flex; gap: 1rem;">
+        <!-- Selector de Mes -->
+        <div class="select-container">
+          <i class="fas fa-calendar"></i>
+          <select class="custom-select" [(ngModel)]="selectedMonth" (ngModelChange)="selectMonth($event)">
+            <option *ngFor="let month of months" [ngValue]="month">{{ month }}</option>
+          </select>
+        </div>
+
+        <!-- Selector de Año -->
+        <div class="select-container">
+          <i class="fas fa-calendar-alt"></i>
+          <select class="custom-select" [(ngModel)]="selectedYear" (ngModelChange)="selectYear($event)">
+            <option *ngFor="let year of years" [ngValue]="year">{{ year }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table mat-table [dataSource]="dataSourceUnidad">
+    
+        <ng-container matColumnDef="year">
+          <th mat-header-cell *matHeaderCellDef> AÑO </th>
+          <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="month">
+          <th mat-header-cell *matHeaderCellDef> MES </th>
+          <td mat-cell *matCellDef="let element"> {{element.month}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="funcionario">
+          <th mat-header-cell *matHeaderCellDef> FUNCIONARIO </th>
+          <td mat-cell *matCellDef="let element"> {{element.funcionario}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="number">
+          <th mat-header-cell *matHeaderCellDef> N° RESOLUCIÓN </th>
+          <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+        </ng-container>
+      
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef> MONTO </th>
+          <td mat-cell *matCellDef="let element"> {{element.monto | currency:'CLP':'symbol-narrow':'1.0-0'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="opciones">
+          <th mat-header-cell *matHeaderCellDef> OPCIONES </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="btn-group" role="group">
+              <button type="button" class="btn-custom" (click)="descargarPDF(element.id_plantilla)">Descargar</button>
+            </div>
+          </td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsUnidad"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsUnidad;"></tr>
+      </table> 
+    </div>
+  </section>
+</main>

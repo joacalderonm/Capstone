@@ -1,0 +1,130 @@
+  <p-card styleClass="input-card">
+    <ng-template pTemplate="header">
+      <h5>Formulario de creación de anticipo</h5>
+    </ng-template>
+    <ng-template pTemplate="content">
+      <app-loading></app-loading>
+      <form [formGroup]="anticipoForm" (ngSubmit)="crearAnticipo()" class="user-form">
+        <div class="input-grid">
+
+          <!-- Campo Unidad -->
+          <div>
+            <label for="unidad" class="form-label">Unidad</label>
+            <p-select id="unidad" [options]="unidades" formControlName="id_unidad" placeholder="Seleccione una unidad" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_unidad')?.touched && anticipoForm.get('id_unidad')?.invalid">
+              {{ getFieldError('id_unidad') }}
+            </small>
+          </div>
+
+          <!-- Campo Programa -->
+          <div>
+            <label for="programa" class="form-label">Programa</label>
+            <p-select id="programa" [options]="programas" formControlName="id_programa" placeholder="Seleccione un programa" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_programa')?.touched && anticipoForm.get('id_programa')?.invalid">
+              {{ getFieldError('id_programa') }}
+            </small>
+          </div>
+
+          <!-- Campo Producto Específico -->
+          <div>
+            <label for="producto" class="form-label">Producto Específico</label>
+            <p-select id="producto" [options]="productos" formControlName="id_producto_subesp" placeholder="Seleccione un producto" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_producto_subesp')?.touched && anticipoForm.get('id_producto_subesp')?.invalid">
+              {{ getFieldError('id_producto_subesp') }}
+            </small>
+          </div>
+
+
+          <!-- Campo Cuenta Presupuestaria -->
+          <div>
+            <label for="cuenta" class="form-label">Cuenta Presupuestaria</label>
+            <p-select id="cuenta" [options]="cuentas" formControlName="id_cuenta_presupuestaria" placeholder="Seleccione una cuenta" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_cuenta_presupuestaria')?.touched && anticipoForm.get('id_cuenta_presupuestaria')?.invalid">
+              {{ getFieldError('id_cuenta_presupuestaria') }}
+            </small>
+          </div>
+
+          <!-- Campo Región -->
+          <div>
+            <label for="region" class="form-label">Región</label>
+            <p-select id="region" [options]="regiones" formControlName="id_region" placeholder="Seleccione una región" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_region')?.touched && anticipoForm.get('id_region')?.invalid">
+              {{ getFieldError('id_region') }}
+            </small>
+          </div>
+
+          <!-- Campo Localidad Destino -->
+          <div>
+            <label for="localidad" class="form-label">Localidad Destino</label>
+            <input id="localidad" type="text" pInputText formControlName="localidad_destino" placeholder="Ingrese la localidad" class="w-full" required />
+            <small class="p-error" *ngIf="anticipoForm.get('localidad_destino')?.touched && anticipoForm.get('localidad_destino')?.invalid">
+              {{ getFieldError('localidad_destino') }}
+            </small>
+          </div>
+
+          <!-- Campo Fecha Desde -->
+          <div>
+            <label for="fechaDesde" class="form-label">Fecha Desde</label>
+            <input type="date" formControlName="fecha_desde" class="w-full" required />
+            <small class="p-error" *ngIf="anticipoForm.get('fecha_desde')?.touched && anticipoForm.get('fecha_desde')?.invalid">
+              {{ getFieldError('fecha_desde') }}
+            </small>
+          </div>
+
+          <!-- Campo Fecha Hasta -->
+          <div>
+            <label for="fechaHasta" class="form-label">Fecha Hasta</label>
+            <input type="date" formControlName="fecha_hasta" class="w-full" required />
+            <small class="p-error" *ngIf="anticipoForm.get('fecha_hasta')?.touched && anticipoForm.get('fecha_hasta')?.invalid">
+              {{ getFieldError('fecha_hasta') }}
+            </small>
+          </div>
+
+          <!-- Campo Días 100% -->
+          <div>
+            <label for="dias100" class="form-label">Días 100%</label>
+            <input id="dias100" type="number" pInputText formControlName="dias_100" placeholder="0" class="w-full" min="0" required />
+            <small class="p-error" *ngIf="anticipoForm.get('dias_100')?.touched && anticipoForm.get('dias_100')?.invalid">
+              {{ getFieldError('dias_100') }}
+            </small>
+          </div>
+
+          <!-- Campo Días 40% -->
+          <div>
+            <label for="dias40" class="form-label">Días 40%</label>
+            <input id="dias40" type="number" pInputText formControlName="dias_40" placeholder="0" class="w-full" min="0" required />
+            <small class="p-error" *ngIf="anticipoForm.get('dias_40')?.touched && anticipoForm.get('dias_40')?.invalid">
+              {{ getFieldError('dias_40') }}
+            </small>
+          </div>
+
+          <!-- Campo Motivo del Cometido -->
+          <div>
+            <label for="motivo" class="form-label">Motivo del Cometido</label>
+            <p-select id="motivo" [options]="motivos" formControlName="id_motivo_cometido" placeholder="Seleccione un motivo" styleClass="w-full" appendTo="body"></p-select>
+            <small class="p-error" *ngIf="anticipoForm.get('id_motivo_cometido')?.touched && anticipoForm.get('id_motivo_cometido')?.invalid">
+              {{ getFieldError('id_motivo_cometido') }}
+            </small>
+          </div>
+
+        </div>
+
+        <!-- Campos de texto en línea separada -->
+        <div class="full-width-fields">
+          <!-- Campo Descripción del Cometido -->
+          <div>
+            <label for="descripcion" class="form-label">Descripción del Cometido</label>
+            <textarea id="descripcion" pInputTextarea formControlName="descripcion_cometido" rows="3" placeholder="Ingrese descripción" class="w-full"></textarea>
+          </div>
+
+          <!-- Campo Observaciones -->
+          <div>
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea id="observaciones" pInputTextarea formControlName="observaciones" rows="3" placeholder="Ingrese observaciones" class="w-full"></textarea>
+          </div>
+        </div>
+
+        <div class="bloque"><p-button label="Agregar Anticipo" type="submit" [disabled]="anticipoForm.invalid" styleClass="w-full p-button-primary block-button"></p-button></div>
+      </form>
+    </ng-template>
+  </p-card>

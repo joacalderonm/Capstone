@@ -1,0 +1,56 @@
+.user-form {
+  position: relative;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Añade margen inferior a cada columna para espaciar los campos */
+.col-md-12 {
+  margin-bottom: 1rem;
+}
+
+.p-error {
+  display: block;
+  min-height: 20px;
+  margin-top: 0.25rem;
+  font-size: 0.875em;
+}
+
+/* Clases de PrimeFlex para alinear botones */
+.flex {
+  display: flex;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+.gap-2 {
+  gap: 0.5rem;
+}
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+/* Asegura que los inputs y selects de PrimeNG ocupen todo el ancho */
+.w-full {
+  width: 100%;
+}
+
+/* Estilos para el modal */
+::ng-deep .mat-mdc-dialog-container {
+  overflow: visible !important;
+}
+
+/* Permitir que el dropdown del select se muestre completamente */
+::ng-deep .p-select-overlay {
+  z-index: 10000 !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+::ng-deep .p-select-overlay {
+  z-index: 10000 !important;
+}
